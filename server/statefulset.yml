@@ -1,0 +1,103 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: postgres-server
+
+spec:
+  replicas: 1
+
+  serviceName: postgres-server
+  podManagementPolicy: Parallel
+
+  updateStrategy:
+    type: RollingUpdate
+
+  template:
+    spec:
+      serviceAccountName: postgres-server
+      enableServiceLinks: true
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60
+
+      containers:
+        - name: server
+          image: postgres-server
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-admin
+                  key: password
+            - name: POSTGRES_GENERAL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-user
+                  key: username
+            - name: POSTGRES_GENERAL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-user
+                  key: password
+
+          envFrom:
+            - configMapRef:
+                name: postgres-server
+
+          ports:
+            - name: postgres
+              containerPort: 5432
+
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - -e
+                - exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
+          volumeMounts:
+            - name: shm
+              mountPath: /dev/shm
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d
+            - name: data
+              mountPath: /var/lib/postgresql
+
+      volumes:
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+        - name: init
+          configMap:
+            name: postgres-init
+            defaultMode: 0755
+
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+
+...

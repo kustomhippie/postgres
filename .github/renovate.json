@@ -1,0 +1,11 @@
+{
+    "extends": [
+        "config:base"
+    ],
+    "enabledManagers": [
+        "kustomize"
+    ],
+    "labels": [
+        "renovate"
+    ]
+}
