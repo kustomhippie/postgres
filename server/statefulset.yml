@@ -51,6 +51,14 @@ spec:
             - name: postgres
               containerPort: 5432
 
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - -e
+                - exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432
+
           readinessProbe:
             exec:
               command:
