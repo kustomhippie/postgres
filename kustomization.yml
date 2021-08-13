@@ -10,7 +10,7 @@ commonLabels:
 
 images:
   - name: postgres-server
-    newName: docker.io/library/postgres
-    newTag: "13-alpine"
+    newName: library/postgres
+    newTag: "13"
 
 ...
