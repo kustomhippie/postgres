@@ -77,7 +77,8 @@ branches:
       required_status_checks:
         strict: true
         contexts:
-          - continuous-integration/drone/pr
+          - build
+          - linter
       enforce_admins: false
       restrictions:
         apps:

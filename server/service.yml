@@ -4,8 +4,15 @@ kind: Service
 
 metadata:
   name: postgres-server
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: server
 
 spec:
+  selector:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: server
+
   ports:
     - name: postgres
       port: 5432

@@ -3,19 +3,37 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - serviceaccount.yml
   - service.yml
   - statefulset.yml
 
-commonLabels:
-  app.kubernetes.io/component: server
-
 configMapGenerator:
   - name: postgres-init
+    options:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: server
     files:
-      - user.sh=user.sh
+      - configs/user.sh
   - name: postgres-server
+    options:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: server
     literals:
       - POSTGRES_GENERAL_DATABASE=test
+
+secretGenerator:
+  - name: postgres-user
+    options:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: server
+    literals: []
+  - name: postgres-admin
+    options:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: server
+    literals: []
 
 ...

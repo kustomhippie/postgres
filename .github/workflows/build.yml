@@ -1,0 +1,25 @@
+---
+name: build
+
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  kustomize:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Build manifest
+        uses: actionhippie/kustomize@v1
+        with:
+          version: 4.4.0
+
+...

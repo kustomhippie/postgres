@@ -4,20 +4,31 @@ kind: StatefulSet
 
 metadata:
   name: postgres-server
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: server
 
 spec:
   replicas: 1
-
   serviceName: postgres-server
   podManagementPolicy: Parallel
 
   updateStrategy:
     type: RollingUpdate
 
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/component: server
+
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: server
+
     spec:
-      serviceAccountName: postgres-server
-      enableServiceLinks: true
+      enableServiceLinks: false
       restartPolicy: Always
       terminationGracePeriodSeconds: 60
 

@@ -5,9 +5,6 @@ kind: Kustomization
 resources:
   - server/
 
-commonLabels:
-  app.kubernetes.io/name: postgres
-
 images:
   - name: postgres-server
     newName: library/postgres
