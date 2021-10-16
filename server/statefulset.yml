@@ -78,14 +78,6 @@ spec:
                 - -e
                 - exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432
 
-          resources:
-            requests:
-              cpu: 250m
-              memory: 256Mi
-            limits:
-              cpu: 500m
-              memory: 512Mi
-
           volumeMounts:
             - name: shm
               mountPath: /dev/shm
