@@ -1,0 +1,53 @@
+---
+- hosts: all
+  gather_facts: False
+
+  tasks:
+    - name: Check admin secret
+      set_fact:
+        secret: "{{ lookup('kubernetes.core.k8s', kind='Secret', namespace=lookup('env', 'CURRENT_NAMESPACE'), resource_name='postgres-admin') }}"
+
+    - name: Write admin secret
+      when: not secret.data.password | default(False)
+      kubernetes.core.k8s:
+        state: present
+        definition: |
+          apiVersion: v1
+          kind: Secret
+
+          metadata:
+            name: postgres-admin
+            namespace: {{ lookup('env', 'CURRENT_NAMESPACE') }}
+            labels:
+              app.kubernetes.io/name: postgres
+              app.kubernetes.io/component: server
+
+          type: Opaque
+          stringData:
+            password: {{ lookup('password', '/dev/null chars=ascii_lowercase,ascii_uppercase,digits length=24') }}
+
+    - name: Check user secret
+      set_fact:
+        secret: "{{ lookup('kubernetes.core.k8s', kind='Secret', namespace=lookup('env', 'CURRENT_NAMESPACE'), resource_name='postgres-user') }}"
+
+    - name: Write user secret
+      when: not secret.data.password | default(False)
+      kubernetes.core.k8s:
+        state: present
+        definition: |
+          apiVersion: v1
+          kind: Secret
+
+          metadata:
+            name: postgres-user
+            namespace: {{ lookup('env', 'CURRENT_NAMESPACE') }}
+            labels:
+              app.kubernetes.io/name: postgres
+              app.kubernetes.io/component: server
+
+          type: Opaque
+          stringData:
+            username: {{ lookup('file', '/work/username') }}
+            password: {{ lookup('password', '/dev/null chars=ascii_lowercase,ascii_uppercase,digits length=24') }}
+
+...

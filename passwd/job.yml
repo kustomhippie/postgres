@@ -1,0 +1,71 @@
+---
+kind: Job
+apiVersion: batch/v1
+
+metadata:
+  name: postgres-passwd
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: passwd
+
+spec:
+  activeDeadlineSeconds: 300
+  backoffLimit: 3
+
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: passwd
+
+    spec:
+      enableServiceLinks: false
+      restartPolicy: Never
+      serviceAccount: postgres-passwd
+
+      containers:
+        - name: ansible
+          image: postgres-ansible
+          imagePullPolicy: IfNotPresent
+
+          command:
+            - /bin/sh
+            - -c
+            - |-
+              cd /work && ansible-playbook -c local -i localhost, playbook.yml
+
+          env:
+            - name: CURRENT_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+
+            - name: ANSIBLE_LOCALHOST_WARNING
+              value: "false"
+            - name: ANSIBLE_RETRY_FILES_ENABLED
+              value: "false"
+            - name: ACTION_WARNINGS
+              value: "false"
+            - name: ANSIBLE_PYTHON_INTERPRETER
+              value: "auto_silent"
+            - name: ANSIBLE_STRING_CONVERSION_ACTION
+              value: "ignore"
+
+          resources:
+            requests:
+              cpu: "0.1"
+              memory: "256M"
+            limits:
+              cpu: "1.0"
+              memory: "256M"
+
+          volumeMounts:
+            - name: config
+              mountPath: /work
+
+      volumes:
+        - name: config
+          configMap:
+            name: postgres-passwd
+
+...
