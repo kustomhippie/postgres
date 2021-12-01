@@ -5,9 +5,4 @@ kind: Kustomization
 resources:
   - server/
 
-images:
-  - name: postgres-server
-    newName: library/postgres
-    newTag: "13"
-
 ...
