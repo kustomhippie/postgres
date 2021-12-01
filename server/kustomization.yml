@@ -25,15 +25,22 @@ configMapGenerator:
 secretGenerator:
   - name: postgres-user
     options:
+      disableNameSuffixHash: true
       labels:
         app.kubernetes.io/name: postgres
         app.kubernetes.io/component: server
     literals: []
   - name: postgres-admin
     options:
+      disableNameSuffixHash: true
       labels:
         app.kubernetes.io/name: postgres
         app.kubernetes.io/component: server
     literals: []
+
+images:
+  - name: postgres-server
+    newName: library/postgres
+    newTag: "13"
 
 ...
