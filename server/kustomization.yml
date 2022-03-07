@@ -41,6 +41,6 @@ secretGenerator:
 images:
   - name: postgres-server
     newName: library/postgres
-    newTag: "13"
+    newTag: "14"
 
 ...
