@@ -21,6 +21,12 @@ configMapGenerator:
         app.kubernetes.io/component: server
     literals:
       - POSTGRES_GENERAL_DATABASE=test
+  - name: postgres-metrics
+    options:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: server
+    literals: []
 
 secretGenerator:
   - name: postgres-user
@@ -41,6 +47,9 @@ secretGenerator:
 images:
   - name: postgres-server
     newName: library/postgres
-    newTag: "15"
+    newTag: "15.3"
+  - name: postgres-metrics
+    newName: prometheuscommunity/postgres-exporter
+    newTag: "v0.10.1"
 
 ...

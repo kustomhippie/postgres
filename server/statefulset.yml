@@ -86,6 +86,46 @@ spec:
             - name: data
               mountPath: /var/lib/postgresql
 
+        - name: metrics
+          image: postgres-metrics
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-admin
+                  key: password
+
+            - name: DATA_SOURCE_NAME
+              value: "postgresql://postgres:$(POSTGRES_PASSWORD)@localhost:5432/postgres?sslmode=disable"
+
+          envFrom:
+            - configMapRef:
+                name: postgres-metrics
+
+          ports:
+            - name: metrics
+              containerPort: 9187
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: metrics
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: metrics
+
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+
       volumes:
         - name: shm
           emptyDir:

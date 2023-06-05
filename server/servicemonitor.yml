@@ -1,0 +1,24 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+
+metadata:
+  name: postgres-server
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: server
+
+spec:
+  endpoints:
+    - port: metrics
+      scheme: http
+      interval: 60s
+
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/component: server
+
+  jobLabel: app.kubernetes.io/name
+
+...
