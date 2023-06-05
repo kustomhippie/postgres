@@ -1,7 +1,7 @@
 ---
 name: build
 
-'on':
+"on":
   push:
     branches:
       - master
@@ -11,15 +11,15 @@ name: build
 
 jobs:
   kustomize:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build manifest
         uses: actionhippie/kustomize@v1
         with:
-          version: 4.4.0
+          version: 5.0.3
 
 ...
