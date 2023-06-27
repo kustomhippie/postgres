@@ -50,6 +50,6 @@ images:
     newTag: "15.3"
   - name: postgres-metrics
     newName: prometheuscommunity/postgres-exporter
-    newTag: "v0.13.0"
+    newTag: "v0.13.1"
 
 ...
