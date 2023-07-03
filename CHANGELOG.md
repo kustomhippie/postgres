@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/kustomhippie/postgres/compare/v1.1.0...v1.1.1) (2023-07-03)
+
+
+### Bugfixes
+
+* **patch:** update prometheuscommunity/postgres-exporter docker tag to v0.13.1 ([e6f156d](https://github.com/kustomhippie/postgres/commit/e6f156dee041531bd7f185d743f06d160e9905c3))
+
 ## [1.1.0](https://github.com/kustomhippie/postgres/compare/v1.0.1...v1.1.0) (2023-06-26)
 
 ## [1.0.1](https://github.com/kustomhippie/postgres/compare/v1.0.0...v1.0.1) (2023-06-19)
