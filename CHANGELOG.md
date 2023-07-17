@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.0](https://github.com/kustomhippie/postgres/compare/v1.1.1...v2.0.0) (2023-07-17)
+
+
+### Features
+
+* **major:** update actionhippie/kustomize action to v2 ([250a30a](https://github.com/kustomhippie/postgres/commit/250a30a4d80c837af3504012077d582309b9182a))
+
 ## [1.1.1](https://github.com/kustomhippie/postgres/compare/v1.1.0...v1.1.1) (2023-07-03)
 
 
