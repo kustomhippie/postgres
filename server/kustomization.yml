@@ -47,7 +47,7 @@ secretGenerator:
 images:
   - name: postgres-server
     newName: library/postgres
-    newTag: "15.3"
+    newTag: "15.4"
   - name: postgres-metrics
     newName: prometheuscommunity/postgres-exporter
     newTag: "v0.13.2"
