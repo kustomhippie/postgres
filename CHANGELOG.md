@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/kustomhippie/postgres/compare/v2.0.1...v2.1.0) (2023-08-14)
+
+
+### Features
+
+* **deps:** update library/postgres docker tag to v15.4 ([f275115](https://github.com/kustomhippie/postgres/commit/f275115e2d4c5bc0063c2b21109f4afa3276d427))
+
 ## [2.0.1](https://github.com/kustomhippie/postgres/compare/v2.0.0...v2.0.1) (2023-08-07)
 
 
