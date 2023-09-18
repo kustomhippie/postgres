@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.0](https://github.com/kustomhippie/postgres/compare/v2.1.0...v3.0.0) (2023-09-18)
+
+
+### Features
+
+* **deps:** update library/postgres docker tag to v16 ([0227d65](https://github.com/kustomhippie/postgres/commit/0227d65cd09f910f684c58c440191755188e1ae4))
+
 ## [2.1.0](https://github.com/kustomhippie/postgres/compare/v2.0.1...v2.1.0) (2023-08-14)
 
 
