@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/kustomhippie/postgres/compare/v3.0.0...v3.1.0) (2023-09-25)
+
+
+### Features
+
+* **deps:** update prometheuscommunity/postgres-exporter docker tag to v0.14.0 ([0e0ddd8](https://github.com/kustomhippie/postgres/commit/0e0ddd886cfefb2807a18a4cabcf93e76a3ab71d))
+
 ## [3.0.0](https://github.com/kustomhippie/postgres/compare/v2.1.0...v3.0.0) (2023-09-18)
 
 
