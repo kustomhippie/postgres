@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.0](https://github.com/kustomhippie/postgres/compare/v3.4.0...v3.5.0) (2024-05-13)
+
+
+### Features
+
+* **deps:** update postgres docker tag to v16.3 ([b21b9b3](https://github.com/kustomhippie/postgres/commit/b21b9b3257e823355f47b8c89b7b81849bc1ae28))
+
 ## [3.4.0](https://github.com/kustomhippie/postgres/compare/v3.3.0...v3.4.0) (2024-02-19)
 
 
