@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/kustomhippie/postgres/compare/v4.1.0...v4.2.0) (2024-11-18)
+
+
+### Features
+
+* **deps:** update postgres docker tag to v17.1 ([#21](https://github.com/kustomhippie/postgres/issues/21)) ([e9036bd](https://github.com/kustomhippie/postgres/commit/e9036bdc92b2e88771d154766c3ece09c3507ffb))
+
 ## [4.1.0](https://github.com/kustomhippie/postgres/compare/v4.0.0...v4.1.0) (2024-11-11)
 
 
