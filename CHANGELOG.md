@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.5.1](https://github.com/kustomhippie/postgres/compare/v4.5.0...v4.5.1) (2025-03-03)
+
+
+### Bugfixes
+
+* **deps:** update prometheuscommunity/postgres-exporter docker tag to v0.17.1 ([#26](https://github.com/kustomhippie/postgres/issues/26)) ([9446663](https://github.com/kustomhippie/postgres/commit/9446663d00ad2e431e7171cb67f8a07c6f15f018))
+
 ## [4.5.0](https://github.com/kustomhippie/postgres/compare/v4.4.0...v4.5.0) (2025-02-24)
 
 
